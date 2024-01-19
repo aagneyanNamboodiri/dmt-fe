@@ -1,29 +1,37 @@
-import { useState } from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import { Button } from "./components/ui/button";
-import { Form, FormField } from "@/components/ui/form";
 import { FORM_DEFAULTS } from "./constants";
 import { useForm } from "react-hook-form";
-import FormInput from "./FormInput";
 import UserAuthForm from "./components/UserAuthForm";
+import { FaGoogle } from "react-icons/fa";
 
 function App() {
   const onSubmit = async (values) => {
     const { username, password } = values;
-    setLoading(true);
     console.log("vals are ", values);
   };
   const form = useForm(FORM_DEFAULTS);
 
+  const handleSsoLogin = () => {
+    console.log("SSO Login");
+  };
+
   return (
     <div className=" w-full flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
-      <div className="relative hidden h-screen flex-col bg-muted p-10 text-white lg:flex dark:border-r">
+      <div className="relative hidden h-screen flex-col bg-muted p-10 text-white lg:flex dark:border-r space-y-10">
         <div className="absolute inset-0 bg-gray-800 rounded-r-xl" />
-        <div className="relative z-20 flex items-center font-medium justify-center  text-3xl">
+        <div className="relative z-20 flex items-center font-medium justify-center text-3xl">
           Master Data Management Tool.
+        </div>
+        <div className="relative z-20 flex items-center font-medium justify-center ">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+          vehicula egestas elit, ac dictum nunc dictum ac. Sed diam sapien,
+          placerat vel congue eu, pulvinar placerat erat. Ut et massa non nulla
+          sodales commodo in et nisi. Nam in risus in metus ultrices
+          condimentum. In mattis velit malesuada, sagittis dolor sed, imperdiet
+          nibh. Pellentesque eget pharetra orci. Nunc vel tortor ac lacus
+          placerat convallis quis eget magna. Proin purus nisl, commodo eu sem
+          nec, feugiat faucibus diam. Mauris viverra et nunc quis feugiat.
         </div>
       </div>
       <div className="lg:p-8">
@@ -33,7 +41,14 @@ function App() {
               Welcome back
             </h1>
           </div>
-          <UserAuthForm />
+          <Button
+            className="rounded-2xl bg-white text-black border justify-center space-x-4 hover:bg-white hover:border-black"
+            onClick={handleSsoLogin}
+          >
+            <FaGoogle size={25} />
+            <span>Login with Google</span>
+          </Button>
+          <UserAuthForm onSubmit={onSubmit} />
         </div>
       </div>
     </div>

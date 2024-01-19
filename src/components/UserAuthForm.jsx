@@ -13,8 +13,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
-const UserAuthForm = () => {
+const UserAuthForm = ({ onSubmit }) => {
   const formSchema = z.object({
     username: z.string().min(2).max(50),
     password: z.string().min(2).max(50),
@@ -26,10 +25,6 @@ const UserAuthForm = () => {
       username: "",
     },
   });
-
-  const onSubmit = (values) => {
-    console.log(values);
-  };
 
   return (
     <Form {...form}>
